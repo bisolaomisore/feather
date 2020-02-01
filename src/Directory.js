@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import View from "./View";
 
 const config = require("./config");
 const Octokit = require("@octokit/rest");
@@ -15,6 +15,7 @@ function FollowersList(props) {
       <li key={follower.login}>
         <img src={follower.avatar_url} alt="github user avatar"/>
         <span>{follower.login}</span>
+        <View />
       </li>
     );
   });
@@ -51,6 +52,7 @@ class Directory extends Component {
         <li key={user.login}>
           <img src={user.avatar_url} alt="github user avatar"/>
           <span>{user.login}</span>
+          <View />
         </li>
         <FollowersList followers={this.state.followers} />
       </ul>
