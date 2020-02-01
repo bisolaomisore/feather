@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import View from "./View";
+import "./directory.css";
 
 const config = require("./config");
 const Octokit = require("@octokit/rest");
@@ -12,9 +13,9 @@ function FollowersList(props) {
   const followers = props.followers;
   const listItems = followers.map((follower) => {
     return (
-      <li key={follower.login}>
-        <img src={follower.avatar_url} alt="github user avatar"/>
-        <span>{follower.login}</span>
+      <li className="user" key={follower.login}>
+        <img className="avatar" src={follower.avatar_url} alt="github user avatar"/>
+        <span className="username">@{follower.login}</span>
         <View />
       </li>
     );
@@ -48,14 +49,17 @@ class Directory extends Component {
   render() {
     const user = this.state.user;
     return (
-      <ul>
-        <li key={user.login}>
-          <img src={user.avatar_url} alt="github user avatar"/>
-          <span>{user.login}</span>
-          <View />
-        </li>
-        <FollowersList followers={this.state.followers} />
-      </ul>
+      <main>
+        <h1>Github Users</h1>
+        <ul className="users">
+          <li className="user" key={user.login}>
+            <img className="avatar" src={user.avatar_url} alt="github user avatar"/>
+            <span className="username">@{user.login}</span>
+            <View />
+          </li>
+          <FollowersList followers={this.state.followers} />
+        </ul>
+      </main>
     );
   }
 }

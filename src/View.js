@@ -36,8 +36,8 @@ function View() {
 
   return (
     <span>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
+      <Button variant="primary" className="btn-large" onClick={() => setModalShow(true)}>
+        View
       </Button>
 
       <VerticallyCenteredModal
