@@ -22,7 +22,7 @@ function FollowersList(props) {
   return listItems;
 }
 
-class DirectoryContainer extends Component {
+class Directory extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -59,4 +59,4 @@ class DirectoryContainer extends Component {
 }
 
 
-export default DirectoryContainer;
+export default Directory;

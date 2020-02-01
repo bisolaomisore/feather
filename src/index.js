@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DirectoryContainer from "./DirectoryContainer";
+import Directory from "./Directory";
 
 
 ReactDOM.render(
-    <DirectoryContainer/>, 
+    <Directory/>,
     document.getElementById('root')
 );
