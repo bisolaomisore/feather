@@ -2,7 +2,7 @@
   color: #000;
 }
 
-.modal-title .username {
+.modal-title .username , .modal-title .badge {
   margin-left: 1.0rem;
 }
 
