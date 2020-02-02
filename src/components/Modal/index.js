@@ -15,6 +15,7 @@ function VerticallyCenteredModal(props) {
     octokit.users.updateAuthenticated({
       bio: userBio
     })
+    props.onHide();
   }
 
   useEffect(() => setUserBio(props.userdata.bio), [props.userdata]);
