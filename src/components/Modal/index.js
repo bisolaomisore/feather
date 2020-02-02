@@ -3,13 +3,9 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import "./view.css"
+import octokit from "../../octokit";
+import "./style.css"
 
-const config = require("./config");
-const Octokit = require("@octokit/rest");
-const octokit = new Octokit({
-  auth: config.PERSONAL_ACCESS_TOKEN
-});
 
 function VerticallyCenteredModal(props) {
   const [userBio, setUserBio] = useState("");
@@ -66,37 +62,4 @@ function VerticallyCenteredModal(props) {
   );
 }
 
-function View(props) {
-  const [modalShow, setModalShow] = useState(false);
-  const [userData, setUserData] = useState({});
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
-  
-  useEffect(() => {
-    if (props.url) {
-      fetch(props.url)
-        .then(res => res.json())
-        .then(data => setUserData(data))
-    } else {
-      setUserData(props.userdata);
-      setUserAuthenticated(true);
-    }
-  }, [props.url, props.userdata]);
-  
-  return (
-    <span>
-      <Button variant="primary" className="btn-large" onClick={() => setModalShow(true)}>
-        View
-      </Button>
-
-      <VerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        userdata={userData}
-        isauthenticated={userAuthenticated ? 'Authenticated' : ''}
-      />
-    </span>
-  );
-}
-
-
-export default View;
+export default VerticallyCenteredModal;

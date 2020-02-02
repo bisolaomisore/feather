@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import View from "./View";
-import "./directory.css";
-
-const config = require("./config");
-const Octokit = require("@octokit/rest");
-const octokit = new Octokit({
-  auth: config.PERSONAL_ACCESS_TOKEN
-});
+import View from "../View/";
+import "./style.css";
+import octokit from "../../octokit";
 
 
 function FollowersList(props) {
@@ -37,7 +32,8 @@ class Directory extends Component {
   componentDidMount() {
     Promise.all([
       octokit.users.getAuthenticated(),
-      octokit.users.listFollowersForAuthenticatedUser(),
+      // octokit.users.listFollowersForAuthenticatedUser(),
+      octokit.users.listFollowingForAuthenticatedUser(),
     ]).then(([user, followers]) => {
       this.setState({
         user: user.data,
