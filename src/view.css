@@ -1,0 +1,12 @@
+.modal-open .modal-content {
+  color: #000;
+}
+
+.modal-title .username {
+  margin-left: 1.0rem;
+}
+
+.modal-title .avatar {
+  height: 40px;
+  width: 40px;
+}

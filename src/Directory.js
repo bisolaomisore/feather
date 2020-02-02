@@ -16,7 +16,7 @@ function FollowersList(props) {
       <li className="user" key={follower.login}>
         <img className="avatar" src={follower.avatar_url} alt="github user avatar"/>
         <span className="username">@{follower.login}</span>
-        <View />
+        <View url={follower.url} />
       </li>
     );
   });
@@ -55,7 +55,7 @@ class Directory extends Component {
           <li className="user" key={user.login}>
             <img className="avatar" src={user.avatar_url} alt="github user avatar"/>
             <span className="username">@{user.login}</span>
-            <View />
+            <View userdata={user} />
           </li>
           <FollowersList followers={this.state.followers} />
         </ul>

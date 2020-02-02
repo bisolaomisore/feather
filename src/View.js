@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import "./view.css"
 
 function VerticallyCenteredModal(props) {
   return (
@@ -13,15 +13,16 @@ function VerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          <img className="avatar" src={props.userdata.avatar_url} alt="github user avatar"/>
+          <span className="username">
+            @{props.userdata.login}
+          </span>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
+        <h4>Bio</h4>
         <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
+          {props.userdata.bio ? props.userdata.bio : "This user has no bio"}
         </p>
       </Modal.Body>
       <Modal.Footer>
@@ -31,9 +32,20 @@ function VerticallyCenteredModal(props) {
   );
 }
 
-function View() {
-  const [modalShow, setModalShow] = React.useState(false);
-
+function View(props) {
+  const [modalShow, setModalShow] = useState(false);
+  const [userData, setUserData] = useState({});
+  
+  useEffect(() => {
+    if (props.url) {
+      fetch(props.url)
+        .then(res => res.json())
+        .then(data => setUserData(data))
+    } else {
+        setUserData(props.userdata);
+    }
+  }, [props.url, props.userdata]);
+  
   return (
     <span>
       <Button variant="primary" className="btn-large" onClick={() => setModalShow(true)}>
@@ -43,6 +55,7 @@ function View() {
       <VerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        userdata={userData}
       />
     </span>
   );
