@@ -9,15 +9,15 @@ function View(props) {
   const [userAuthenticated, setUserAuthenticated] = useState(false);
   
   useEffect(() => {
-    if (props.url) {
-      fetch(props.url)
+    if (!props.userdata.bio) {
+      fetch(props.userdata.url)
         .then(res => res.json())
         .then(data => setUserData(data))
     } else {
       setUserData(props.userdata);
       setUserAuthenticated(true);
     }
-  }, [props.url, props.userdata]);
+  }, [props.userdata]);
   
   return (
     <span>

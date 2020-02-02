@@ -17,31 +17,3 @@ h1 {
   text-align: center;
   width: 80%;
 }
-
-.user .avatar {
-  height: 48px;
-  width: 48px;
-}
-
-.user span {
-  align-items: center;
-  display: flex;
-}
-
-@media (min-width: 768px) {
-  .user .avatar {
-    height: 72px;
-    width: 72px;
-  }
-  
-  .user .username {
-    font-size: 1.5rem;
-  }
-  
-  span .btn-large {
-    border-radius: 0.3rem;
-    font-size:  1.25rem;
-    line-height: 1.5;
-    padding: 0.5rem 1rem;
-  }
-}

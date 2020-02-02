@@ -1,63 +1,30 @@
-import React, { Component } from "react";
-import View from "../View/";
-import "./style.css";
+import React, { useState, useEffect } from "react";
+import UsersList from "../../components/UserList";
 import octokit from "../../octokit";
+import "./style.css";
 
+function Directory(props) {
+  const [usersData, setUsersData] = useState([]);
 
-function FollowersList(props) {
-  const followers = props.followers;
-  const listItems = followers.map((follower) => {
-    return (
-      <li className="user" key={follower.login}>
-        <img className="avatar" src={follower.avatar_url} alt="github user avatar"/>
-        <span className="username">@{follower.login}</span>
-        <View url={follower.url} />
-      </li>
-    );
-  });
-
-  return listItems;
-}
-
-class Directory extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      user: {},
-      followers: []
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     Promise.all([
       octokit.users.getAuthenticated(),
       // octokit.users.listFollowersForAuthenticatedUser(),
       octokit.users.listFollowingForAuthenticatedUser(),
     ]).then(([user, followers]) => {
-      this.setState({
-        user: user.data,
-        followers: followers.data
-      });
+      const githubUsersData = [user.data].concat(followers.data);
+      setUsersData(githubUsersData);
     })
-  }
+  }, []);
 
-  render() {
-    const user = this.state.user;
-    return (
-      <main>
-        <h1>Github Users</h1>
-        <ul className="users">
-          <li className="user" key={user.login}>
-            <img className="avatar" src={user.avatar_url} alt="github user avatar"/>
-            <span className="username">@{user.login}</span>
-            <View userdata={user} />
-          </li>
-          <FollowersList followers={this.state.followers} />
-        </ul>
-      </main>
-    );
-  }
+  return (
+    <main>
+      <h1>Github Users</h1>
+      <ul className="users">
+        <UsersList users={usersData} />
+      </ul>
+    </main>
+  );
 }
 
 
