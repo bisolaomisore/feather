@@ -39,13 +39,14 @@ function VerticallyCenteredModal(props) {
       <Modal.Body>
         <h4>Bio</h4>
         <p>
-          {props.userdata.bio ? userBio : "This user has no bio"}
+          {props.userdata.bio ? userBio : `@${props.userdata.login} has no bio`}
         </p>
         {props.isauthenticated &&
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBioText">
               <Form.Control
-                type="text"
+                as="textarea"
+                rows="2"
                 value={userBio}
                 onChange={e => setUserBio(e.target.value)}
               />
