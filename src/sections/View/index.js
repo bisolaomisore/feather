@@ -21,7 +21,7 @@ function View(props) {
   
   return (
     <span>
-      <Button variant="primary" className="btn-large" onClick={() => setModalShow(true)}>
+      <Button className="btn-large" onClick={() => setModalShow(true)}>
         View
       </Button>
 

@@ -51,8 +51,8 @@ function VerticallyCenteredModal(props) {
                 onChange={e => setUserBio(e.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-            Submit
+            <Button type="submit">
+              Update Bio
             </Button>
           </Form>
         }
