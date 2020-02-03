@@ -10,7 +10,7 @@ function Directory(props) {
     Promise.all([
       octokit.users.getAuthenticated(),
       // octokit.users.listFollowersForAuthenticatedUser(),
-      octokit.users.listFollowingForAuthenticatedUser(),
+      octokit.users.listFollowingForAuthenticatedUser({per_page: 4}),
     ]).then(([user, followers]) => {
       const githubUsersData = [user.data].concat(followers.data);
       setUsersData(githubUsersData);
